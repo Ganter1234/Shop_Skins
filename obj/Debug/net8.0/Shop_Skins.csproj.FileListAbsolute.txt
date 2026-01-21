@@ -1,0 +1,15 @@
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\bin\Debug\net8.0\Shop_Skins.deps.json
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\bin\Debug\net8.0\Shop_Skins.dll
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\bin\Debug\net8.0\Shop_Skins.pdb
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\bin\Debug\net8.0\IShopApi.dll
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\bin\Debug\net8.0\IShopApi.pdb
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\obj\Debug\net8.0\Shop_Skins.csproj.AssemblyReference.cache
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\obj\Debug\net8.0\Shop_Skins.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\obj\Debug\net8.0\Shop_Skins.AssemblyInfoInputs.cache
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\obj\Debug\net8.0\Shop_Skins.AssemblyInfo.cs
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\obj\Debug\net8.0\Shop_Skins.csproj.CoreCompileInputs.cache
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\obj\Debug\net8.0\Shop_Skins.csproj.Up2Date
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\obj\Debug\net8.0\Shop_Skins.dll
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\obj\Debug\net8.0\refint\Shop_Skins.dll
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\obj\Debug\net8.0\Shop_Skins.pdb
+C:\Users\vital\Desktop\Разное\Скриптинг\Скриптинг CS2 (csharp)\managed\Shop_Skins\obj\Debug\net8.0\ref\Shop_Skins.dll
