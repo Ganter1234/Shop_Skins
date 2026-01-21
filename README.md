@@ -1,2 +1,25 @@
-# Shop_Skins
+# Shop Skins
 Module for Shop Core which adds the ability to buy skins for characters
+
+# Config
+```json
+{
+    "SpawnDelay": 1.0,
+    "EnablePreview": true,
+    "Cameraman": {
+        "name": "Камера Мен",
+        "price": "5000",
+        "sellprice": "1000",
+        "duration": "86400",
+        "ModelT": "characters/models/cameraman_ported_lev/cameraman_ported_cs2.vmdl",
+        "ModelCT": "characters/models/cameraman_ported_lev/cameraman_ported_cs2.vmdl"
+    },
+    "Deadpool": {
+        "name": "Дэдпул",
+        "price": "5000",
+        "sellprice": "1000",
+        "duration": "86400",
+        "ModelT": "characters/models/kolka/deadpool/deadpool.vmdl",
+        "ModelCT": "characters/models/kolka/deadpool/deadpool.vmdl"
+    }
+}
