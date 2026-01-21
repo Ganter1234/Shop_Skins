@@ -1,17 +1,18 @@
 ﻿using System.Drawing;
 using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
+using CounterStrikeSharp.API.Core.Translations;
 using CounterStrikeSharp.API.Modules.Utils;
 using Newtonsoft.Json.Linq;
 using ShopAPI;
 
-namespace Shop_Tags;
+namespace Shop_Skins;
 
-public class Shop_Tags : BasePlugin
+public class Shop_SkinsPlugin : BasePlugin
 {
     public override string ModuleName => "[SHOP] Skins";
     public override string ModuleAuthor => "Ganter1234";
-    public override string ModuleVersion => "1.5";
+    public override string ModuleVersion => "1.6";
     private IShopApi? _api;
 	private readonly string CategoryName = "Skins";
     public static JObject? JsonSkins { get; set; }
@@ -21,24 +22,23 @@ public class Shop_Tags : BasePlugin
     public override void OnAllPluginsLoaded(bool hotReload)
     {
         _api = IShopApi.Capability.Get();
-        if (_api == null) throw new Exception("WHERE SHOP CORE???");
+        if (_api == null) throw new DllNotFoundException("Shop Core not found...");
 
 		string Fpath = Path.Combine(ModuleDirectory,"../../configs/plugins/Shop/skins.json");
 		if (!File.Exists(Fpath))
-			throw new Exception("WHERE CONFIG??? (configs/plugins/Shop/skins.json)");
+			throw new FileNotFoundException("Shop skins config not found... (configs/plugins/Shop/skins.json)");
 
 		JsonSkins = JObject.Parse(File.ReadAllText(Fpath));
 
 		RegisterListener<Listeners.OnTick>(UpdatePreviewCamera);
 		RegisterEventHandler<EventRoundStart>(ClearPreviewCameraInfo);
-		//RegisterListener<Listeners.OnMapStart>(OnMapStart);
 
 		RegisterListener<Listeners.OnServerPrecacheResources>((manifest) =>
         {
+			manifest.AddResource("characters\\models\\ctm_sas\\ctm_sas.vmdl");
+			manifest.AddResource("characters\\models\\tm_phoenix\\tm_phoenix.vmdl");
 			foreach (var key in JsonSkins!.Properties())
 			{
-				manifest.AddResource("characters\\models\\ctm_sas\\ctm_sas.vmdl");
-				manifest.AddResource("characters\\models\\tm_phoenix\\tm_phoenix.vmdl");
 				if(JsonSkins.TryGetValue(key.Name, out var obj) && obj is JObject JsonItem)
 				{
 					if(JsonItem["ModelT"]!.ToString().Length > 0)
@@ -61,7 +61,7 @@ public class Shop_Tags : BasePlugin
 			}
         });
 
-		_api!.CreateCategory(CategoryName, "Скины");
+		_api!.CreateCategory(CategoryName, Localizer["DisplayName"]);
 
 		foreach (var key in JsonSkins!.Properties())
 		{
@@ -103,7 +103,6 @@ public class Shop_Tags : BasePlugin
 
 				if(!string.IsNullOrEmpty(playerModel[player.Slot, player.TeamNum]))
 				{
-					//player.PrintToChat($"Debug: {playerModel[player.Slot, player.TeamNum]}");
 					SetPlayerModel(playerPawn, playerModel[player.Slot, player.TeamNum]);
 				}
 			}, CounterStrikeSharp.API.Modules.Timers.TimerFlags.STOP_ON_MAPCHANGE);
@@ -226,13 +225,13 @@ public class Shop_Tags : BasePlugin
 		var slot = player.Slot;
 		if (player.TeamNum < 2 || !IsPlayerAlive(player))
 		{
-			player.PrintToChat("Вы должны быть живы чтобы использовать режим превью!");
+			player.PrintToChat(StringExtensions.ReplaceColorTags(Localizer.ForPlayer(player, "Preview_Alive")));
 			return;
 		}
 
 		if(previewTimer[slot] != null)
 		{
-			player.PrintToChat("Режим превью уже активирован! Подождите немного времени!");
+			player.PrintToChat(StringExtensions.ReplaceColorTags(Localizer.ForPlayer(player, "Preview_Wait")));
 			return;
 		}
 
@@ -270,7 +269,7 @@ public class Shop_Tags : BasePlugin
 				return;
 
 			DefaultThirdPerson(player);
-			player.PrintToChat("Превью скина завершено!");
+			player.PrintToChat(StringExtensions.ReplaceColorTags(Localizer.ForPlayer(player, "Preview_End")));
 			if (playerPawn != null && playerPawn.IsValid)
 				SetPlayerModel(playerPawn, oldModel);
         });
@@ -287,7 +286,7 @@ public class Shop_Tags : BasePlugin
 			_cameraProp.DispatchSpawn();
 			_cameraProp.Render = Color.FromArgb(0, 255, 255, 255);
             Utilities.SetStateChanged(_cameraProp, "CBaseModelEntity", "m_clrRender");
-			_cameraProp.Teleport(CalculatePositionInFront(caller, -110, 90), caller.PlayerPawn.Value!.V_angle, null);
+			_cameraProp.Teleport(CalculatePositionInFront(caller, 120, 90), caller.PlayerPawn.Value!.EyeAngles, null);
 
 			caller.PlayerPawn!.Value!.CameraServices!.ViewEntity.Raw = _cameraProp.EntityHandle.Raw;
 			Utilities.SetStateChanged(caller.PlayerPawn!.Value!, "CBasePlayerPawn", "m_pCameraServices");
@@ -295,7 +294,7 @@ public class Shop_Tags : BasePlugin
 
 			AddTimer(0.5f, () =>
 			{
-				_cameraProp.Teleport(CalculatePositionInFront(caller, -110, 90), caller.PlayerPawn.Value.V_angle, null);
+				_cameraProp.Teleport(CalculatePositionInFront(caller, 120, 80), caller.PlayerPawn.Value.V_angle, null);
 			});
 
 		}
@@ -336,7 +335,7 @@ public class Shop_Tags : BasePlugin
 	{
 		foreach (var player in thirdPersonPool.Keys)
 		{
-			thirdPersonPool[player].Teleport(CalculatePositionInFront(player, -110, 90), player.PlayerPawn.Value!.V_angle, null);
+			thirdPersonPool[player].Teleport(CalculatePositionInFront(player, -110, 90), player.PlayerPawn.Value!.EyeAngles, null);
 		}
 	}
 
@@ -346,9 +345,4 @@ public class Shop_Tags : BasePlugin
 		return HookResult.Continue;
 	}
 	#endregion
-	/*public void OnMapStart(string mapName)
-	{
-		Server.PrecacheModel("characters\\models\\tm_phoenix\\tm_phoenix.vmdl");
-		Server.PrecacheModel("characters\\models\\ctm_sas\\ctm_sas.vmdl");
-	}*/
 }
