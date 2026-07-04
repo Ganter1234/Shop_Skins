@@ -28,8 +28,8 @@
 ```
 
 # Установка
-Установить [Metamod:Source](https://www.sourcemm.net/downloads.php?branch=dev), [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp/releases) и [MultiAddonManager](https://github.com/Source2ZE/MultiAddonManager/releases)
-Установить плагин [Shop Core](https://github.com/Ganter1234/Shop-Core/releases)
-Скопировать содержимое архива в папку /game/csgo/addons/counterstrikesharp
-Отредактировать конфиг и добавить необходимые модели в ваш аддон через MultiAddonManager
+Установить [Metamod:Source](https://www.sourcemm.net/downloads.php?branch=dev), [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp/releases) и [MultiAddonManager](https://github.com/Source2ZE/MultiAddonManager/releases)  
+Установить плагин [Shop Core](https://github.com/Ganter1234/Shop-Core/releases)  
+Скопировать содержимое архива в папку /game/csgo/addons/counterstrikesharp  
+Отредактировать конфиг и добавить необходимые модели в ваш аддон через MultiAddonManager  
 Перезапустить сервер или принудительно загрузить плагин с помощью команды css_plugins load
